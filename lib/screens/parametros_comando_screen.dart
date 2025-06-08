@@ -99,8 +99,11 @@ class _ParametrosComandoScreenState
           builder: (_) => CupertinoAlertDialog(
             content: Column(
               children: const [
-                Icon(CupertinoIcons.question_circle_fill,
-                    size: 60, color: Colors.orange),
+                Icon(
+                  CupertinoIcons.question_circle_fill,
+                  size: 60,
+                  color: Colors.orange,
+                ),
                 SizedBox(height: 12),
                 Text(
                   "Confirmar envio",
@@ -146,14 +149,14 @@ class _ParametrosComandoScreenState
         ? CupertinoColors.white
         : CupertinoColors.black;
 
-    final parametrosAsync =
-        ref.watch(parametrosComandoProvider(_providerParams));
+    final parametrosAsync = ref.watch(
+      parametrosComandoProvider(_providerParams),
+    );
 
     return CupertinoPageScaffold(
       backgroundColor: bgColor,
       child: Column(
         children: [
-          // BARRA AZUL CUSTOM COMO NA OUTRA TELA
           Container(
             color: const Color(0xFF114474),
             padding: EdgeInsets.only(
@@ -202,8 +205,9 @@ class _ParametrosComandoScreenState
                 if (!_controllersInitialized && parametros.isNotEmpty) {
                   _controllers.clear();
                   for (var p in parametros) {
-                    _controllers[p.identificador] =
-                        TextEditingController(text: p.valorPadrao ?? "");
+                    _controllers[p.identificador] = TextEditingController(
+                      text: p.valorPadrao ?? "",
+                    );
                   }
                   WidgetsBinding.instance.addPostFrameCallback((_) {
                     if (mounted) {
@@ -215,7 +219,8 @@ class _ParametrosComandoScreenState
 
                 if (parametros.isEmpty || !_controllersInitialized) {
                   return const Center(
-                      child: Text("Nenhum parâmetro disponível."));
+                    child: Text("Nenhum parâmetro disponível."),
+                  );
                 }
 
                 return Form(
@@ -227,7 +232,8 @@ class _ParametrosComandoScreenState
                         final controller = _controllers[p.identificador];
                         if (controller == null) return const SizedBox.shrink();
 
-                        final isBoolean = p.valores == "0;1" ||
+                        final isBoolean =
+                            p.valores == "0;1" ||
                             p.nome.toLowerCase().contains("saida") ||
                             p.inputType == InputType.booleanSwitch;
 
@@ -276,7 +282,8 @@ class _ParametrosComandoScreenState
                                       placeholder: p.rotulo,
                                       style: TextStyle(color: textColor),
                                       placeholderStyle: const TextStyle(
-                                          color: CupertinoColors.systemGrey),
+                                        color: CupertinoColors.systemGrey,
+                                      ),
                                     ),
                             ],
                           ),
@@ -301,11 +308,11 @@ class _ParametrosComandoScreenState
                           final idModelo = parametros.first.idModeloEquipamento;
                           final result =
                               await EnviarComandoService.enviarComandoStatic(
-                            idVeiculo: widget.idVeiculo,
-                            idComando: widget.idComando,
-                            idModeloEquipamento: idModelo,
-                            parametros: parametrosEnvio,
-                          );
+                                idVeiculo: widget.idVeiculo,
+                                idComando: widget.idComando,
+                                idModeloEquipamento: idModelo,
+                                parametros: parametrosEnvio,
+                              );
 
                           _mostrarAlerta(
                             titulo: result['codigo'] == 0

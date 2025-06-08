@@ -3,13 +3,13 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 class NetworkService {
   final Connectivity _connectivity = Connectivity();
 
-  /// Stream corrigida para uso simples no app (pega o primeiro tipo disponível)
+  // Stream corrigida para pegar o primeiro resultado da lista
   Stream<ConnectivityResult> get onConnectivityChanged =>
-      _connectivity.onConnectivityChanged.map((list) => list.first);
+      _connectivity.onConnectivityChanged.map((results) => results.first);
 
-  /// Consulta instantânea se está online
   Future<bool> isConnected() async {
-    final result = await _connectivity.checkConnectivity();
+    final results = await _connectivity.checkConnectivity();
+    final result = results.isNotEmpty ? results.first : ConnectivityResult.none;
     return result != ConnectivityResult.none;
   }
 }

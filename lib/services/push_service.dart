@@ -29,7 +29,6 @@ class PushService {
 
     final data = jsonDecode(response.body);
 
-    // Tratamento de erros típicos
     if ((data["mensagem"]?.toLowerCase()?.contains("token") ?? false) &&
         (data["mensagem"]?.toLowerCase()?.contains("inválido") ?? false ||
          data["mensagem"]?.toLowerCase()?.contains("expirado") ?? false)) {

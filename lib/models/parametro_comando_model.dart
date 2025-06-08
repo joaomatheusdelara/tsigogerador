@@ -29,7 +29,6 @@ class ParametroComando {
     );
   }
 
-  // Helper para determinar tipo de entrada no form
   InputType get inputType {
     final lowerNome = nome.toLowerCase();
     final hasValores = valores != null && valores!.isNotEmpty;

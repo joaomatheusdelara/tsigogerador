@@ -42,7 +42,6 @@ class SuporteScreen extends ConsumerWidget {
       backgroundColor: backgroundColor,
       child: Column(
         children: [
-          // BARRA AZUL PADRÃO
           Container(
             width: double.infinity,
             padding: EdgeInsets.only(
@@ -57,8 +56,10 @@ class SuporteScreen extends ConsumerWidget {
                 CupertinoButton(
                   padding: const EdgeInsets.all(6),
                   onPressed: () => Navigator.pop(context),
-                  child: const Icon(CupertinoIcons.back,
-                      color: CupertinoColors.white),
+                  child: const Icon(
+                    CupertinoIcons.back,
+                    color: CupertinoColors.white,
+                  ),
                 ),
                 const Expanded(
                   child: Center(
@@ -77,7 +78,6 @@ class SuporteScreen extends ConsumerWidget {
             ),
           ),
 
-          // CONTEÚDO
           Expanded(
             child: suporteAsync.when(
               data: (suporte) => ListView(
@@ -85,10 +85,7 @@ class SuporteScreen extends ConsumerWidget {
                 children: [
                   const SizedBox(height: 15),
                   Center(
-                    child: Image.asset(
-                      'assets/logo_ativos.png',
-                      height: 55,
-                    ),
+                    child: Image.asset('assets/logo_ativos.png', height: 55),
                   ),
                   const SizedBox(height: 15),
 
@@ -137,7 +134,6 @@ class SuporteScreen extends ConsumerWidget {
 
                   const SizedBox(height: 30),
 
-                  // HORÁRIO DE ATENDIMENTO
                   Container(
                     decoration: BoxDecoration(
                       color: cardColor,
@@ -154,28 +150,38 @@ class SuporteScreen extends ConsumerWidget {
                             Text(
                               "Horário de Atendimento",
                               style: TextStyle(
-                                  color: textColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 16),
+                                color: textColor,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                              ),
                             ),
                           ],
                         ),
                         const SizedBox(height: 10),
-                        ..._horario().map((linha) => Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 4),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Text(linha['dia']!,
-                                      style: TextStyle(
-                                          color: textColor, fontSize: 15)),
-                                  Text(linha['hora']!,
-                                      style: TextStyle(
-                                          color: subTextColor, fontSize: 15)),
-                                ],
-                              ),
-                            )),
+                        ..._horario().map(
+                          (linha) => Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 4),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  linha['dia']!,
+                                  style: TextStyle(
+                                    color: textColor,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                                Text(
+                                  linha['hora']!,
+                                  style: TextStyle(
+                                    color: subTextColor,
+                                    fontSize: 15,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -183,8 +189,8 @@ class SuporteScreen extends ConsumerWidget {
               ),
               loading: () => const Center(child: CupertinoActivityIndicator()),
               error: (err, _) => Center(
-                  child:
-                      Text("Erro: $err", style: TextStyle(color: textColor))),
+                child: Text("Erro: $err", style: TextStyle(color: textColor)),
+              ),
             ),
           ),
         ],
@@ -199,11 +205,13 @@ class SuporteScreen extends ConsumerWidget {
     required bool isDark,
     VoidCallback? onTap,
   }) {
-    final Color cardColor =
-        isDark ? const Color(0xFF1E1E1E) : CupertinoColors.white;
+    final Color cardColor = isDark
+        ? const Color(0xFF1E1E1E)
+        : CupertinoColors.white;
     final Color titleColor = CupertinoColors.systemGrey;
-    final Color valueColor =
-        isDark ? CupertinoColors.white : CupertinoColors.black;
+    final Color valueColor = isDark
+        ? CupertinoColors.white
+        : CupertinoColors.black;
 
     final bool isClickable = onTap != null && value != "Não informado";
 
@@ -248,8 +256,11 @@ class SuporteScreen extends ConsumerWidget {
               ),
             ),
             if (isClickable)
-              const Icon(CupertinoIcons.chevron_right,
-                  size: 18, color: CupertinoColors.systemGrey),
+              const Icon(
+                CupertinoIcons.chevron_right,
+                size: 18,
+                color: CupertinoColors.systemGrey,
+              ),
           ],
         ),
       ),

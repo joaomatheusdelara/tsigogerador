@@ -127,10 +127,9 @@ class _DashboardScreenState extends ConsumerState<DashboardScreen>
                       MediaQuery.of(context).platformBrightness ==
                       Brightness.dark;
                   final backgroundColor = isDarkMode
-                      ? const Color(0xFF181B20).withOpacity(
-                          0.98,
-                        ) // Fundo dark night
-                      : Colors.white.withOpacity(0.98);
+                      ? const Color(0xFF181B20).withAlpha((0.98 * 255).toInt())
+
+                      : Colors.white.withAlpha((0.98 * 255).toInt());
                   final cardColor = isDarkMode
                       ? const Color(0xFF23272F)
                       : Colors.white;

@@ -36,7 +36,6 @@ class LoginScreenState extends State<LoginScreen> {
 
   Future<void> carregarCredenciais() async {
     final prefs = await SharedPreferences.getInstance();
-    // Verifica se 'lembrar_me' é true antes de carregar email/senha
     lembrarSenha = prefs.getBool("lembrar_me") ?? false;
     if (lembrarSenha) {
       emailController.text = prefs.getString("email_lembrado") ?? "";
@@ -63,7 +62,6 @@ class LoginScreenState extends State<LoginScreen> {
         lembrarSenha,
       );
 
-      // Login bem-sucedido (código 0)
       final prefs = await SharedPreferences.getInstance();
       if (lembrarSenha) {
         await prefs.setString("email_lembrado", emailController.text.trim());

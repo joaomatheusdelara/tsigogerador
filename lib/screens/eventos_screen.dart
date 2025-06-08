@@ -11,14 +11,18 @@ class EventosScreen extends ConsumerWidget {
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
 
-    final backgroundColor =
-        isDarkMode ? const Color(0xFF121212) : const Color(0xFFF5F5F5);
-    final cardColor =
-        isDarkMode ? const Color(0xFF1E1E1E) : CupertinoColors.white;
-    final textColor =
-        isDarkMode ? CupertinoColors.white : const Color(0xFF114474);
-    final shadowColor =
-        isDarkMode ? const Color(0x66000000) : const Color(0x33000000);
+    final backgroundColor = isDarkMode
+        ? const Color(0xFF121212)
+        : const Color(0xFFF5F5F5);
+    final cardColor = isDarkMode
+        ? const Color(0xFF1E1E1E)
+        : CupertinoColors.white;
+    final textColor = isDarkMode
+        ? CupertinoColors.white
+        : const Color(0xFF114474);
+    final shadowColor = isDarkMode
+        ? const Color(0x66000000)
+        : const Color(0x33000000);
 
     Future<void> onRefresh() async {
       ref.invalidate(eventosProvider);
@@ -45,8 +49,10 @@ class EventosScreen extends ConsumerWidget {
                   alignment: Alignment.centerLeft,
                   child: GestureDetector(
                     onTap: () => Navigator.of(context).pop(),
-                    child: const Icon(CupertinoIcons.back,
-                        color: CupertinoColors.white),
+                    child: const Icon(
+                      CupertinoIcons.back,
+                      color: CupertinoColors.white,
+                    ),
                   ),
                 ),
                 const Text(
@@ -60,8 +66,6 @@ class EventosScreen extends ConsumerWidget {
               ],
             ),
           ),
-
-          // Lista de eventos
           Expanded(
             child: eventosAsync.when(
               data: (eventos) {
@@ -74,92 +78,96 @@ class EventosScreen extends ConsumerWidget {
                   slivers: [
                     CupertinoSliverRefreshControl(onRefresh: onRefresh),
                     SliverList(
-                      delegate: SliverChildBuilderDelegate(
-                        (context, index) {
-                          final evento = eventos[index];
+                      delegate: SliverChildBuilderDelegate((context, index) {
+                        final evento = eventos[index];
 
-                          final isAlerta =
-                              evento.nomeTipo.contains('Desacionada');
-                          final icon = isAlerta
-                              ? CupertinoIcons.exclamationmark_triangle_fill
-                              : evento.nomeTipo.contains('Ignição')
-                                  ? CupertinoIcons.bolt_fill
-                                  : CupertinoIcons.check_mark_circled_solid;
+                        final isAlerta = evento.nomeTipo.contains(
+                          'Desacionada',
+                        );
+                        final icon = isAlerta
+                            ? CupertinoIcons.exclamationmark_triangle_fill
+                            : evento.nomeTipo.contains('Ignição')
+                            ? CupertinoIcons.bolt_fill
+                            : CupertinoIcons.check_mark_circled_solid;
 
-                          final iconColor = isAlerta
-                              ? CupertinoColors.systemRed
-                              : CupertinoColors.activeGreen;
+                        final iconColor = isAlerta
+                            ? CupertinoColors.systemRed
+                            : CupertinoColors.activeGreen;
 
-                          return Container(
-                            margin: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 8),
-                            padding: const EdgeInsets.all(14),
-                            decoration: BoxDecoration(
-                              color: cardColor,
-                              borderRadius: BorderRadius.circular(12),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: shadowColor,
-                                  blurRadius: 4,
-                                  offset: const Offset(0, 2),
+                        return Container(
+                          margin: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                            vertical: 8,
+                          ),
+                          padding: const EdgeInsets.all(14),
+                          decoration: BoxDecoration(
+                            color: cardColor,
+                            borderRadius: BorderRadius.circular(12),
+                            boxShadow: [
+                              BoxShadow(
+                                color: shadowColor,
+                                blurRadius: 4,
+                                offset: const Offset(0, 2),
+                              ),
+                            ],
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Icon(icon, size: 32, color: iconColor),
+                              const SizedBox(height: 12),
+                              Text(
+                                evento.rotulo,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color: textColor,
                                 ),
-                              ],
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              children: [
-                                Icon(icon, size: 32, color: iconColor),
-                                const SizedBox(height: 12),
-                                Text(
-                                  evento.rotulo,
-                                  textAlign: TextAlign.center,
+                              ),
+                              const SizedBox(height: 8),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 10,
+                                  vertical: 6,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: iconColor.withOpacity(0.15),
+                                  borderRadius: BorderRadius.circular(6),
+                                ),
+                                child: Text(
+                                  evento.nomeTipo,
                                   style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: textColor,
+                                    color: iconColor,
+                                    fontWeight: FontWeight.w600,
                                   ),
                                 ),
-                                const SizedBox(height: 8),
-                                Container(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 6),
-                                  decoration: BoxDecoration(
-                                    color: iconColor.withOpacity(0.15),
-                                    borderRadius: BorderRadius.circular(6),
+                              ),
+                              const SizedBox(height: 8),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    CupertinoIcons.time,
+                                    size: 14,
+                                    color: isDarkMode
+                                        ? CupertinoColors.systemGrey
+                                        : CupertinoColors.systemGrey,
                                   ),
-                                  child: Text(
-                                    evento.nomeTipo,
-                                    style: TextStyle(
-                                      color: iconColor,
-                                      fontWeight: FontWeight.w600,
+                                  const SizedBox(width: 6),
+                                  Text(
+                                    evento.dataHora,
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      color: CupertinoColors.systemGrey,
                                     ),
                                   ),
-                                ),
-                                const SizedBox(height: 8),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Icon(CupertinoIcons.time,
-                                        size: 14,
-                                        color: isDarkMode
-                                            ? CupertinoColors.systemGrey
-                                            : CupertinoColors.systemGrey),
-                                    const SizedBox(width: 6),
-                                    Text(
-                                      evento.dataHora,
-                                      style: const TextStyle(
-                                        fontSize: 13,
-                                        color: CupertinoColors.systemGrey,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                        childCount: eventos.length,
-                      ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        );
+                      }, childCount: eventos.length),
                     ),
                   ],
                 );

@@ -3,10 +3,10 @@ import 'package:http/http.dart' as http;
 import 'api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logger/logger.dart';
+
 final logger = Logger();
 
 class EnviarComandoService {
-  // Estático para facilitar o uso pelo Notifier (padrão simples)
   static Future<Map<String, dynamic>> enviarComandoStatic({
     required String idVeiculo,
     required String idComando,
@@ -37,7 +37,6 @@ class EnviarComandoService {
     logger.i(response.body);
     final data = jsonDecode(response.body);
 
-    // 💡 Adicione o tratamento aqui:
     if (data['mensagem']?.toLowerCase()?.contains("token") == true &&
         (data['mensagem']?.toLowerCase()?.contains("inválido") == true ||
             data['mensagem']?.toLowerCase()?.contains("expirado") == true)) {

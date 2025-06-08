@@ -21,8 +21,9 @@ class ComandosScreen extends ConsumerWidget {
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDark = brightness == Brightness.dark;
 
-    final backgroundColor =
-        isDark ? const Color(0xFF121212) : const Color(0xFFF5F5F5);
+    final backgroundColor = isDark
+        ? const Color(0xFF121212)
+        : const Color(0xFFF5F5F5);
     final cardColor = isDark ? const Color(0xFF1E1E1E) : CupertinoColors.white;
     final textColor = isDark ? CupertinoColors.white : CupertinoColors.black;
 
@@ -30,7 +31,6 @@ class ComandosScreen extends ConsumerWidget {
       backgroundColor: backgroundColor,
       child: Column(
         children: [
-          // BARRA AZUL FIXA (como nas outras telas)
           Container(
             color: const Color(0xFF114474),
             padding: EdgeInsets.only(
@@ -70,8 +70,6 @@ class ComandosScreen extends ConsumerWidget {
               ),
             ),
           ),
-
-          // LISTAGEM DOS COMANDOS
           Expanded(
             child: comandosAsync.when(
               data: (comandos) {
@@ -94,7 +92,7 @@ class ComandosScreen extends ConsumerWidget {
                         color: cardColor,
                         borderRadius: BorderRadius.circular(16),
                         boxShadow: isDark
-                            ? [] // sem sombra no modo escuro
+                            ? []
                             : [
                                 BoxShadow(
                                   color: CupertinoColors.systemGrey2
@@ -106,7 +104,9 @@ class ComandosScreen extends ConsumerWidget {
                       ),
                       child: CupertinoButton(
                         padding: const EdgeInsets.symmetric(
-                            vertical: 18, horizontal: 10),
+                          vertical: 18,
+                          horizontal: 10,
+                        ),
                         borderRadius: BorderRadius.circular(16),
                         color: CupertinoColors.transparent,
                         onPressed: () {
@@ -123,8 +123,10 @@ class ComandosScreen extends ConsumerWidget {
                         },
                         child: Row(
                           children: [
-                            const Icon(CupertinoIcons.arrow_right_circle,
-                                color: CupertinoColors.systemBlue),
+                            const Icon(
+                              CupertinoIcons.arrow_right_circle,
+                              color: CupertinoColors.systemBlue,
+                            ),
                             const SizedBox(width: 10),
                             Expanded(
                               child: Text(
@@ -145,9 +147,7 @@ class ComandosScreen extends ConsumerWidget {
                 );
               },
               loading: () => const Center(child: CupertinoActivityIndicator()),
-              error: (e, _) => Center(
-                child: Text('Erro: $e'),
-              ),
+              error: (e, _) => Center(child: Text('Erro: $e')),
             ),
           ),
         ],

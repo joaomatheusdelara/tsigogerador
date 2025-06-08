@@ -67,8 +67,8 @@ class _RecuperarSenhaScreenState extends State<RecuperarSenhaScreen> {
             const SizedBox(height: 24),
             GestureDetector(
               onTap: () {
-                Navigator.of(context).pop(); // Fecha o alerta
-                if (sucesso) Navigator.of(context).pop(); // Volta p/ login
+                Navigator.of(context).pop();
+                if (sucesso) Navigator.of(context).pop(); 
               },
               child: Container(
                 width: double.infinity,

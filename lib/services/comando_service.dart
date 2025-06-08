@@ -31,7 +31,7 @@ class ComandoService {
     }
 final data = jsonDecode(response.body);
 
-// 💡 Adicione este bloco ANTES de retornar!
+
 if (data['mensagem']?.toLowerCase()?.contains("token") == true &&
     (data['mensagem']?.toLowerCase()?.contains("inválido") == true ||
      data['mensagem']?.toLowerCase()?.contains("expirado") == true)) {
