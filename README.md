@@ -31,7 +31,6 @@ Passo a Passo
 
 Clone o repositório:
 git clone https://github.com/joaomatheusdelara/tsigogerador.git
-cd tsigogerador2
 
 Instale as dependências:
 No terminal: flutter pub get
