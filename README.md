@@ -1,7 +1,7 @@
 
-==============================================
+
 TSIGO Gerador – Aplicativo Flutter
-==============================================
+=======================
 
 Resumo do Projeto
 
@@ -52,7 +52,7 @@ No emulador Android/iOS, ou plugue seu celular.
 
 No terminal: flutter run
 
-=======================
+
 DÚVIDAS?
 =======================
 Para qualquer dúvida durante o teste, entre em contato:
