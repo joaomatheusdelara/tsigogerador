@@ -33,6 +33,7 @@ Clone o repositório:
 git clone https://github.com/joaomatheusdelara/tsigogerador.git
 
 Instale as dependências:
+
 No terminal: flutter pub get
 
 Configuração do Firebase(opcional):
@@ -41,5 +42,6 @@ Se quiser integrar com seu próprio projeto, siga a documentação FlutterFire.
 
 Rode o projeto:
 No emulador Android/iOS, ou plugue seu celular.
+
 No terminal: flutter run
 
