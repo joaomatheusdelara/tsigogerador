@@ -1,5 +1,10 @@
+
+==============================================
 TSIGO Gerador – Aplicativo Flutter
+==============================================
+
 Resumo do Projeto
+
 O aplicativo TSIGO Gerador foi desenvolvido para monitoramento, automação e manutenção de geradores de energia, integrando recursos avançados de telemetria, notificações em tempo real e futuramente checklist digital.
 A solução conecta o usuário à plataforma TSIGO por meio de uma API REST, permitindo visualizar dados críticos como status, horímetro, tensão, comandos remotos e alertas, tudo em uma interface clean, intuitiva e responsiva.
 
@@ -20,6 +25,8 @@ Suporte: Acesso direto a informações de suporte da empresa.
 __________________________________________________________________________________________________________
 
 Como Rodar o Projeto
+
+
 Pré-requisitos
 Flutter SDK (versão 3.6.1 ou superior)
 Dart
@@ -44,4 +51,11 @@ Rode o projeto:
 No emulador Android/iOS, ou plugue seu celular.
 
 No terminal: flutter run
+
+=======================
+DÚVIDAS?
+=======================
+Para qualquer dúvida durante o teste, entre em contato:
+João Matheus de Lara – joao@tsigo.com.br
+
 
