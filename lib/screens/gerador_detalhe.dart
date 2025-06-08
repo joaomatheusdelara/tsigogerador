@@ -7,8 +7,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:logger/logger.dart';
 import 'comandos_screen.dart';
 
-
-
 final logger = Logger();
 
 class GeradorDetalheScreen extends ConsumerStatefulWidget {
@@ -40,8 +38,9 @@ class _GeradorDetalheScreenState extends ConsumerState<GeradorDetalheScreen> {
     final geradorAsync = ref.watch(geradorDetalheProvider(widget.gerador.id));
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
-    final backgroundColor =
-        isDarkMode ? const Color(0xFF121212) : const Color(0xFFF5F5F5);
+    final backgroundColor = isDarkMode
+        ? const Color(0xFF121212)
+        : const Color(0xFFF5F5F5);
 
     Future<void> onRefresh() async {
       ref.invalidate(geradorDetalheProvider(widget.gerador.id));
@@ -65,6 +64,22 @@ class _GeradorDetalheScreenState extends ConsumerState<GeradorDetalheScreen> {
               child: Stack(
                 alignment: Alignment.center,
                 children: [
+                  // Botão de voltar no canto esquerdo
+                  Positioned(
+                    left: 0,
+                    child: CupertinoButton(
+                      padding: const EdgeInsets.all(10),
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Icon(
+                        CupertinoIcons.back,
+                        color: CupertinoColors.white,
+                        size: 22,
+                      ),
+                    ),
+                  ),
+                  // Título centralizado
                   Center(
                     child: Text(
                       widget.gerador.rotulo,
@@ -76,33 +91,34 @@ class _GeradorDetalheScreenState extends ConsumerState<GeradorDetalheScreen> {
                       overflow: TextOverflow.ellipsis,
                     ),
                   ),
-                Positioned(
-  right: 0,
-  child: Row(
-    children: [
-      CupertinoButton(
-        padding: const EdgeInsets.all(10),
-        onPressed: () {
-          Navigator.of(context).push(
-            CupertinoPageRoute(
-              builder: (_) => ComandosScreen(
-                idVeiculo: widget.gerador.idVeiculo,
-                rotulo: widget.gerador.rotulo,
-                modeloEquipamentoNome: widget.gerador.nomeModelo,
-              ),
-            ),
-          );
-        },
-        child: const Icon(
-          CupertinoIcons.settings,
-          color: CupertinoColors.white,
-          size: 22,
-        ),
-      ),
-    ],
-  ),
-),
-
+                  // Botão de comandos à direita
+                  Positioned(
+                    right: 0,
+                    child: Row(
+                      children: [
+                        CupertinoButton(
+                          padding: const EdgeInsets.all(10),
+                          onPressed: () {
+                            Navigator.of(context).push(
+                              CupertinoPageRoute(
+                                builder: (_) => ComandosScreen(
+                                  idVeiculo: widget.gerador.idVeiculo,
+                                  rotulo: widget.gerador.rotulo,
+                                  modeloEquipamentoNome:
+                                      widget.gerador.nomeModelo,
+                                ),
+                              ),
+                            );
+                          },
+                          child: const Icon(
+                            CupertinoIcons.settings,
+                            color: CupertinoColors.white,
+                            size: 22,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -121,11 +137,11 @@ class _GeradorDetalheScreenState extends ConsumerState<GeradorDetalheScreen> {
                       sliver: SliverGrid(
                         gridDelegate:
                             const SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: 2,
-                          childAspectRatio: 1,
-                          crossAxisSpacing: 10,
-                          mainAxisSpacing: 10,
-                        ),
+                              crossAxisCount: 2,
+                              childAspectRatio: 1,
+                              crossAxisSpacing: 10,
+                              mainAxisSpacing: 10,
+                            ),
                         delegate: SliverChildListDelegate([
                           _infoBox(
                             "Ignição",
@@ -203,14 +219,20 @@ class _GeradorDetalheScreenState extends ConsumerState<GeradorDetalheScreen> {
     );
   }
 
-  Widget _infoBox(String title, IconData icon, Color iconColor,
-      [String? value]) {
+  Widget _infoBox(
+    String title,
+    IconData icon,
+    Color iconColor, [
+    String? value,
+  ]) {
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
-    final cardColor =
-        isDarkMode ? const Color(0xFF1E1E1E) : CupertinoColors.white;
-    final textColor =
-        isDarkMode ? CupertinoColors.white : CupertinoColors.black;
+    final cardColor = isDarkMode
+        ? const Color(0xFF1E1E1E)
+        : CupertinoColors.white;
+    final textColor = isDarkMode
+        ? CupertinoColors.white
+        : CupertinoColors.black;
 
     return Card(
       color: cardColor,
@@ -227,7 +249,10 @@ class _GeradorDetalheScreenState extends ConsumerState<GeradorDetalheScreen> {
               title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 15, fontWeight: FontWeight.w500, color: textColor),
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: textColor,
+              ),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -237,9 +262,10 @@ class _GeradorDetalheScreenState extends ConsumerState<GeradorDetalheScreen> {
                 child: Text(
                   value,
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: textColor),
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                  ),
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -251,14 +277,21 @@ class _GeradorDetalheScreenState extends ConsumerState<GeradorDetalheScreen> {
     );
   }
 
-  Widget _svgBox(String title, String assetPath, bool ativo, Color cor,
-      [String? value]) {
+  Widget _svgBox(
+    String title,
+    String assetPath,
+    bool ativo,
+    Color cor, [
+    String? value,
+  ]) {
     final brightness = MediaQuery.of(context).platformBrightness;
     final isDarkMode = brightness == Brightness.dark;
-    final cardColor =
-        isDarkMode ? const Color(0xFF1E1E1E) : CupertinoColors.white;
-    final textColor =
-        isDarkMode ? CupertinoColors.white : CupertinoColors.black;
+    final cardColor = isDarkMode
+        ? const Color(0xFF1E1E1E)
+        : CupertinoColors.white;
+    final textColor = isDarkMode
+        ? CupertinoColors.white
+        : CupertinoColors.black;
 
     return Card(
       color: cardColor,
@@ -280,7 +313,10 @@ class _GeradorDetalheScreenState extends ConsumerState<GeradorDetalheScreen> {
               title,
               textAlign: TextAlign.center,
               style: TextStyle(
-                  fontSize: 15, fontWeight: FontWeight.w500, color: textColor),
+                fontSize: 15,
+                fontWeight: FontWeight.w500,
+                color: textColor,
+              ),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
@@ -290,9 +326,10 @@ class _GeradorDetalheScreenState extends ConsumerState<GeradorDetalheScreen> {
                 child: Text(
                   value,
                   style: TextStyle(
-                      fontSize: 13,
-                      fontWeight: FontWeight.bold,
-                      color: textColor),
+                    fontSize: 13,
+                    fontWeight: FontWeight.bold,
+                    color: textColor,
+                  ),
                   textAlign: TextAlign.center,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,

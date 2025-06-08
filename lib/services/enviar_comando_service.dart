@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'api_constants.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:logger/logger.dart';
-
 final logger = Logger();
 
 class EnviarComandoService {
