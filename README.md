@@ -25,7 +25,7 @@ Suporte: Acesso direto a informações de suporte da empresa.
 __________________________________________________________________________________________________________
 
 Como Rodar o Projeto
-
+=======================
 
 Pré-requisitos
 Flutter SDK (versão 3.6.1 ou superior)
