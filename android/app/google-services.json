@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "705092519470",
+    "project_id": "tsigo-geradores",
+    "storage_bucket": "tsigo-geradores.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705092519470:android:fd9868669995db1f0201bf",
+        "android_client_info": {
+          "package_name": "com.example.tsigo_gerador"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW2COSWLPCCCkVC_A0V-XvEIxNpl0jdsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705092519470:android:5a8d04e3d3d4b9b30201bf",
+        "android_client_info": {
+          "package_name": "com.example.tsigo_gerador2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW2COSWLPCCCkVC_A0V-XvEIxNpl0jdsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:705092519470:android:cdbb86b7cce588af0201bf",
+        "android_client_info": {
+          "package_name": "com.tsigo.geradores"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCW2COSWLPCCCkVC_A0V-XvEIxNpl0jdsI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
