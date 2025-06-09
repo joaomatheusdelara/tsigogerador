@@ -50,7 +50,7 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCW2COSWLPCCCkVC_A0V-XvEIxNpl0jdsI',
+    apiKey: 'REMOVIDO',
     appId: '1:705092519470:android:5a8d04e3d3d4b9b30201bf',
     messagingSenderId: '705092519470',
     projectId: 'tsigo-geradores',
@@ -58,7 +58,7 @@ class DefaultFirebaseOptions {
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyBKBre5jn2YcBTb_dI3PHroaoZPgAmw6zM',
+    apiKey: 'REMOVIDO',
     appId: '1:705092519470:ios:73961e0e35aeee4b0201bf',
     messagingSenderId: '705092519470',
     projectId: 'tsigo-geradores',
